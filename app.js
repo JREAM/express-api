@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const helmet = require('helmet')
 const knex = require('knex')
 const config = require('./knexfile.js')
 const app = express()
@@ -7,6 +8,7 @@ const port = 3000
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(helmet())
 app.use(cors())
 
 const db = knex(config.development)
