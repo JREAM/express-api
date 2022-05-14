@@ -1,0 +1,7 @@
+{
+  "env": {},
+  "routes": [
+    "src": "/api/(.*)",
+    "dest": "app.js"
+  ]
+}
