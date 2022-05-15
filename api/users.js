@@ -1,24 +1,12 @@
 const express = require('express')
-const cors = require('cors')
-const helmet = require('helmet')
+const router = express.Router()
 const knex = require('knex')
-const config = require('./knexfile.js')
-const app = express()
-const port = 3000
 
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
-app.use(helmet())
-app.use(cors())
-
+const config=require('../knexfile.js')
 const db = knex(config.development)
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/api/users', async(req, res) => {
+router.get('/', async(req, res) => {
   await knex
     .select('first_name, last_name, email, password')
     .from('users')
@@ -29,7 +17,7 @@ app.get('/api/users', async(req, res) => {
      })
 })
 
-app.post('/api/users', async(res, res) => {
+router.post('/', async(req, res) => {
   const email = req.body.email
   const password = req.body.password
   const confirmPassword = req.body.password
@@ -47,8 +35,4 @@ app.post('/api/users', async(res, res) => {
     })
 })
 
-
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+module.exports = router
