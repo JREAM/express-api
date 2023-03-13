@@ -19,7 +19,7 @@
     "helmet": "^5.0.2",
     "knex": "^2.0.0",
     "nodemon": "^2.0.16",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "^5.1.5"
   },
   "keywords": [
     "express",
